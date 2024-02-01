@@ -77,6 +77,13 @@ export default function App() {
       tx.executeSql(
         "create table if not exists items (id integer primary key not null, done int, value text);"
       );
+
+      tx.executeSql(
+        "CREATE VIRTUAL TABLE IF NOT EXISTS components_fts USING fts4(value)",
+        [],
+        () => { },
+        (_, error) => console.error(error)
+      )
     });
   }, []);
 
